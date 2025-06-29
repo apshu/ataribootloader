@@ -4,7 +4,7 @@
             "name": "cc65",
             "includePath": [
                 "${workspaceFolder}/src",
-                "D:/projects/cc65/include"
+                "d:/projects/cc65/include"
             ],
             "defines": ["__CC65__", "__ATARI__"],
             "compilerPath": "D:/projects/cc65/bin/cl65.exe",

@@ -54,6 +54,20 @@
         "command": "D:/Games/Altirra/Altirra64.exe",
         "args": ["bl.xex"],
         "problemMatcher": []
+    },
+    {
+      "label": "Clean output folder (PowerShell)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "if (Test-Path output) { Remove-Item output\\* -Recurse -Force }"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
     }
   ]
 }

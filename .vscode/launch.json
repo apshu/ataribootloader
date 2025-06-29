@@ -15,9 +15,12 @@
             "name": "Run in Altirra",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "D:/Games/Altirra/Altirra64.exe",
+            "program": "D:/projects/sio/Altirra/Altirra64.exe",
             "args": [
-                "bl.xex"
+                "/debug",
+                "/debugcmd:","lfe SIOCMD",
+                "/debugcmd:","lfe SIODATA",
+                "/run:","bl.xex",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/output",
