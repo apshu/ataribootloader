@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build with cc65",
+      "type": "shell",
+      "command": "D:/projects/cc65/bin/cl65",
+      "options": {
+        "cwd": "${workspaceFolder}/output",
+      },
+      "args": [
+        "-t", "atari",           // Change to your target: c64, nes, atari, etc.
+        "../src/main.c",              // Your main source file
+        "../src/gui.c",
+        "../src/sioboot.c",
+        "-g", // Generate debug information
+        "-v", // Verbose output
+        "-Ln", "bl.lbl", // Label file
+        "-m", "bl.map", // Map file
+        "-l", "bl.lst", // Listing file
+        "-T", // Include source as comments in the listing
+        "-o", "bl.xex"       // Output file
+      ],
+      "group": {
+        "kind": "build",
+      },
+      "problemMatcher": []
+    },
+    {
+        "label": "cc65 labels to Altirra format",
+        "type": "shell",
+        "command": "python",
+        "args": [
+            "${workspaceFolder}/scripts/lbl2sym.py",
+            "${workspaceFolder}/output/bl.lbl",
+            "${workspaceFolder}/output/bl.sym"
+        ]
+    },
+    {
+        "label": "Build all",
+        "dependsOn": [
+            "Build with cc65",
+            "cc65 labels to Altirra format"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+        "problemMatcher": []
+    },
+    {
+        "label": "Run Altirra",
+        "type": "shell",
+        "command": "D:/Games/Altirra/Altirra64.exe",
+        "args": ["bl.xex"],
+        "problemMatcher": []
+    }
+  ]
+}
+

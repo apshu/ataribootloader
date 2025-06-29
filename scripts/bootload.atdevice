@@ -1,0 +1,26 @@
+// A simple SIO-based PIC bootloader
+
+option "name": "Sample SIO bootload compatible PIC simulation";
+
+Segment fwdescription: { size: 128, init_pattern: [85,49,45,77,97,105,110,32,77,67,85,193,194,195,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] };
+
+SIODevice boot_device: {
+    device_id: $FE,
+    commands: [
+        {
+            id: $01,
+            script: function
+            { 
+                if ($aux1 < 4) {
+                    $sio.ack();
+                    $sio.complete();
+                    fwdescription.write_byte(1, $aux1+49);
+                    $sio.send_frame(fwdescription, 0, 128);
+                } else {
+                    // $sio.nak(); // Uncomment this line to make the device discovery much faster
+                }
+                
+            }
+        }
+    ]
+};

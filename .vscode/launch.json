@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "${workspaceFolder}/output/bl.lbl",
+                "${workspaceFolder}/output/bl.sym",
+            ],
+        },
+        {
+            "name": "Run in Altirra",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/Games/Altirra/Altirra64.exe",
+            "args": [
+                "bl.xex"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/output",
+            "console": "internalConsole",
+            "preLaunchTask": "Build all",
+        }
+    ],
+    "version": "2.0.0"
+}
